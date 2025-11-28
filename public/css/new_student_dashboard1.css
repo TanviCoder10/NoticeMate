@@ -1,0 +1,161 @@
+/* Reset & base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body {
+  background-color: #f4f5f7;
+  color: #333;
+}
+
+/* Dashboard Layout */
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background: #fff;
+  border-right: 1px solid #ddd;
+  transition: 0.3s;
+  padding: 20px;
+}
+.sidebar.collapsed {
+  width: 70px;
+}
+.sidebar .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+.sidebar .logo img {
+  border-radius: 50%;
+}
+.sidebar .nav-links ul, .sidebar .categories ul {
+  list-style: none;
+}
+.sidebar ul li {
+  padding: 12px 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+.sidebar ul li:hover, .sidebar ul li.active {
+  background: #6200ee;
+  color: #fff;
+}
+
+/* Main content */
+.main-content {
+  flex: 1;
+  padding: 20px 30px;
+  transition: 0.3s;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+header .search input {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+header .profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+header .profile img {
+  border-radius: 50%;
+}
+header .profile .logout {
+  background: #ff4d4d;
+  border: none;
+  padding: 6px 12px;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Cards */
+.dashboard-cards h2 {
+  margin-bottom: 5px;
+}
+.dashboard-cards .date {
+  margin-bottom: 20px;
+  color: #666;
+}
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.card {
+  flex: 1;
+  min-width: 120px;
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Notices */
+.notices {
+  margin-top: 30px;
+}
+.notice-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+  color: #666;
+  border: 1px dashed #ccc;
+}
+.notice-card i {
+  color: #ccc;
+  margin-bottom: 10px;
+}
+
+/* Toggle button */
+#toggle-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media screen and (max-width: 900px) {
+  .sidebar {
+    position: fixed;
+    left: -250px;
+    top: 0;
+    height: 100%;
+    z-index: 100;
+  }
+  .sidebar.active {
+    left: 0;
+  }
+  #toggle-btn {
+    display: block;
+  }
+  .main-content {
+    padding: 20px 15px;
+  }
+}

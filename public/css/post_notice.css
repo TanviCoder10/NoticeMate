@@ -1,0 +1,164 @@
+/* General Styling */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f6fb;
+  margin: 0;
+  padding: 20px;
+}
+
+/* Container */
+.container {
+  max-width: 800px;
+  margin: auto;
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+/* Back link */
+.back-link {
+  margin-bottom: 15px;
+}
+.back-link a {
+  text-decoration: none;
+  font-size: 14px;
+  color: #4a90e2;
+  font-weight: 600;
+}
+.back-link a:hover {
+  text-decoration: underline;
+}
+
+/* Header */
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 8px;
+}
+.subtitle {
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+/* Form fields */
+.form-group {
+  margin-bottom: 20px;
+}
+.form-flex {
+  display: flex;
+  gap: 20px;
+}
+.form-group.half {
+  flex: 1;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #444;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 6px rgba(74,144,226,0.3);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.char-count {
+  display: block;
+  font-size: 12px;
+  color: #777;
+  margin-top: 5px;
+  text-align: right;
+}
+
+/* File upload */
+.file-upload {
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  text-align: center;
+  padding: 25px;
+  background: #fafafa;
+  cursor: pointer;
+  transition: 0.3s;
+  position: relative;
+}
+.file-upload:hover {
+  border-color: #4a90e2;
+  background: #f0f7ff;
+}
+.upload-label {
+  display: block;
+  cursor: pointer;
+}
+.upload-icon {
+  font-size: 24px;
+  color: #4a90e2;
+  margin-bottom: 8px;
+}
+.file-info {
+  font-size: 12px;
+  color: #777;
+}
+.choose-btn {
+  margin-top: 10px;
+}
+.btn-choose {
+  background: #4a90e2;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-block;
+}
+.btn-choose:hover {
+  background: #357abd;
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 25px;
+}
+
+.btn {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-publish {
+  background: linear-gradient(90deg, #0066ff, #4a90e2);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-publish:hover {
+  background: linear-gradient(90deg, #0052cc, #357abd);
+}

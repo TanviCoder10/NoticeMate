@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="/css/existing_student_dashboard.css">
+  <script defer src="/js/existing_student_dashboard.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png" alt="Logo">
+        <h2>Student Dashboard</h2>
+        <p>Springfield University</p>
+      </div>
+      <nav class="menu">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#" data-section="profile" class="active"><i class="fa fa-user"></i> Profile</a></li>
+          <li><a href="#" data-section="settings"><i class="fa fa-cog"></i> Settings</a></li>
+          <li><a href="#" data-section="notifications"><i class="fa fa-bell"></i> Notifications</a></li>
+        </ul>
+      </nav>
+      <nav class="categories">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="#" data-section="all" class="active"><i class="fa fa-th-list"></i> All Categories</a></li>
+          <li><a href="#" data-section="academic"><i class="fa fa-book"></i> Academic</a></li>
+          <li><a href="#" data-section="events"><i class="fa fa-calendar"></i> Events</a></li>
+          <li><a href="#" data-section="sports"><i class="fa fa-football"></i> Sports</a></li>
+          <li><a href="#" data-section="general"><i class="fa fa-comments"></i> General</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Top Bar -->
+      <header class="topbar">
+        <button class="toggle-btn" id="toggle-btn"><i class="fa fa-bars"></i></button>
+        <input type="text" placeholder="Search notices...">
+        <div class="user-info">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" class="avatar">
+          <span><%= (currentUser && currentUser.username) ? currentUser.username : 'John Smith' %></span>
+          <a href="/logout"><button class="logout"><i class="fa fa-sign-out-alt"></i> Logout</button></a>
+        </div>
+      </header>
+
+<!-- Profile Section (Home) -->
+<section id="profile" class="section active">
+  <div class="greeting">
+    <h2>Good Afternoon, <%= (currentUser && currentUser.username) ? currentUser.username : 'John' %>! 👋</h2>
+    <p><%= new Date().toLocaleDateString() %></p>
+    <div class="cards">
+      <div class="card">1<br><span>Academic</span></div>
+      <div class="card">1<br><span>Events</span></div>
+      <div class="card">1<br><span>Sports</span></div>
+      <div class="card">0<br><span>General</span></div>
+      <div class="card highlight">3<br><span>Active Notices</span></div>
+    </div>
+  </div>
+  <section class="notices">
+    <h3><i class="fa fa-bullhorn"></i> All Notices</h3>
+    <div class="notice-grid">
+  <% notices.forEach(n => { %>
+    <div class="notice">
+      <span class="tag <%= n.category.toLowerCase() %>"><%= n.category %></span>
+      <span class="date"><i class="fa fa-calendar"></i> <%= n.createdAt.toDateString() %></span>
+      <h4><%= n.title %></h4>
+      <p><%= n.description %></p>
+      <p class="expires"><i class="fa fa-clock"></i> Expires: <%= n.expiry.toDateString() %></p>
+      <button class="read-btn"><i class="fa fa-eye"></i> Read More</button>
+    </div>
+  <% }) %>
+</div>
+
+  </section>
+</section>
+
+<!-- rest sections remain same as your html -->
+
+
+<!-- Settings Section -->
+<section id="settings" class="section">
+  <h2><i class="fa fa-cog"></i> Settings</h2>
+  <div class="settings-form">
+    <label>Full Name</label>
+    <input type="text" value="John Smith">
+    <label>Email</label>
+    <input type="email" value="johnsmith@email.com">
+    <label>Password</label>
+    <input type="password" placeholder="********">
+    <button class="read-btn"><i class="fa fa-save"></i> Save Changes</button>
+  </div>
+</section>
+
+<!-- Notifications Section -->
+<section id="notifications" class="section">
+  <h2><i class="fa fa-bell"></i> Notifications</h2>
+  <ul class="notification-list">
+    <li><i class="fa fa-info-circle"></i> Your profile was updated successfully.</li>
+    <li><i class="fa fa-calendar-check"></i> New Event: Coding Hackathon on Oct 5th.</li>
+    <li><i class="fa fa-book"></i> Academic submission deadline extended to Oct 10th.</li>
+  </ul>
+</section>
+
+<!-- Academic Section -->
+<section id="academic" class="section">
+  <h2><i class="fa fa-book"></i> Academic Notices</h2>
+  <div class="notice-grid">
+    <div class="notice">
+      <span class="tag academic">Academic</span>
+      <h4>Assignment Submission</h4>
+      <p>Submit Assignment 3 by 10/5/2025</p>
+      <p class="expires"><i class="fa fa-clock"></i> Expires: 10/5/2025</p>
+    </div>
+    <div class="notice">
+      <span class="tag academic">Academic</span>
+      <h4>Exam Schedule</h4>
+      <p>Mid-term exams will start from 10/15/2025</p>
+      <p class="expires"><i class="fa fa-clock"></i> Expires: 10/20/2025</p>
+    </div>
+  </div>
+</section>
+
+<!-- Events Section -->
+<section id="events" class="section">
+  <h2><i class="fa fa-calendar"></i> Events</h2>
+  <div class="notice-grid">
+    <div class="notice">
+      <span class="tag events">Events</span>
+      <h4>Freshers Party</h4>
+      <p>Welcome party for first-year students.</p>
+      <p class="expires"><i class="fa fa-clock"></i> Date: 10/6/2025</p>
+    </div>
+    <div class="notice">
+      <span class="tag events">Events</span>
+      <h4>Annual Sports Meet</h4>
+      <p>3-day event with inter-college competitions.</p>
+      <p class="expires"><i class="fa fa-clock"></i> Date: 10/12/2025</p>
+    </div>
+  </div>
+</section>
+
+<!-- Sports Section -->
+<section id="sports" class="section">
+  <h2><i class="fa fa-football"></i> Sports Notices</h2>
+  <div class="notice-grid">
+    <div class="notice">
+      <span class="tag sports">Sports</span>
+      <h4>Football Tournament</h4>
+      <p>Inter-department football tournament registration open.</p>
+      <p class="expires"><i class="fa fa-clock"></i> Expires: 10/8/2025</p>
+    </div>
+    <div class="notice">
+      <span class="tag sports">Sports</span>
+      <h4>Basketball Practice</h4>
+      <p>Weekly basketball practice at 5pm.</p>
+      <p class="expires"><i class="fa fa-clock"></i> Every Friday</p>
+    </div>
+  </div>
+</section>
+
+<!-- General Section -->
+<section id="general" class="section">
+  <h2><i class="fa fa-comments"></i> General Notices</h2>
+  <div class="notice-grid">
+    <div class="notice">
+      <span class="tag general">General</span>
+      <h4>Library Hours</h4>
+      <p>Library will remain open till 10pm during exams.</p>
+      <p class="expires"><i class="fa fa-clock"></i> Valid: 10/1/2025 - 10/20/2025</p>
+    </div>
+    <div class="notice">
+      <span class="tag general">General</span>
+      <h4>Maintenance Notice</h4>
+      <p>Water supply will be interrupted on Oct 2nd (10am-2pm).</p>
+      <p class="expires"><i class="fa fa-clock"></i> Date: 10/2/2025</p>
+    </div>
+  </div>
+</section>
+
+</main>
+</div>
+
+</body>
+</html>

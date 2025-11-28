@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/css/admin_dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  
+      <div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <h3 class="dashboard-title">Admin Dashboard</h3>
+      <div class="dashboard-header">
+        
+  <img 
+    src="https://tse3.mm.bing.net/th/id/OIP.m5udGnjrfUGSFSgv1R8vsQAAAA?pid=Api&P=0&h=180" 
+    alt="College Logo" 
+    class="college-logo"
+  >
+
+  <div class="header-text">
+    <h2 class="college-name">P. E. S. Modern College of Engineering</h2>
+    
+  </div>
+</div>
+
+
+      <nav class="menu">
+        <h4>Navigation</h4>
+        <ul>
+           <ul>
+          <li><i class="fa fa-bell"></i> Admin Panel</li>
+          <li><a href="/admin/post"><i class="fa fa-plus-circle"></i> Post New Notice</a></li>
+          <li><i class="fa fa-tasks"></i> Manage Notices</li>
+          <li><i class="fa fa-users"></i> Manage Users</li>
+          <li><i class="fa fa-chart-bar"></i> Analytics</li>
+        </ul>
+        </ul>
+      </nav>
+
+
+      
+      <div class="logout">
+        <a class="logout-btn" href="/logout"><i class="fa fa-sign-out-alt"></i> Logout</a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      
+
+      <!-- Stats Cards -->
+      <section class="stats">
+        <div class="card blue">
+          <h3>Total Notices</h3>
+          <p class="number"><%= notices.length %></p>
+          <span>All time notices</span>
+        </div>
+      </section>
+
+      <!-- Notices Management -->
+      <section class="notices">
+        <div class="notices-header">
+          <h2>Notices Management</h2>
+          <a href="/admin/post"><button class="btn">+ New Notice</button></a>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+  <% notices.forEach((n, i) => { %>
+    <tr>
+      <td><%= i + 1 %></td>
+      <td><%= n.title %></td>
+      <td><span class="tag <%= n.category.toLowerCase() %>"><%= n.category %></span></td>
+      <td><%= n.createdAt.toDateString() %></td>
+      <td>
+        <% if (n.expiry && new Date(n.expiry) < new Date()) { %>
+          <span class="status expired">Expired</span>
+        <% } else { %>
+          <span class="status active">Active</span>
+        <% } %>
+      </td>
+      <td>
+        <a href="/admin/edit/<%= n._id %>" class="edit"><i class="fa fa-edit"></i></a>
+        <form action="/admin/delete/<%= n._id %>?_method=DELETE" method="POST" style="display:inline">
+          <button class="delete"><i class="fa fa-trash"></i></button>
+        </form>
+      </td>
+    </tr>
+  <% }) %>
+</tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

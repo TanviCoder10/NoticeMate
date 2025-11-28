@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="/css/new_student_dashboard.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script defer src="/js/new_student_dashboard.js"></script>
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <h3 class="dashboard-title">Student Dashboard</h3>
+      <div class="dashboard-header">
+        
+  <img 
+    src="https://tse3.mm.bing.net/th/id/OIP.m5udGnjrfUGSFSgv1R8vsQAAAA?pid=Api&P=0&h=180" 
+    alt="College Logo" 
+    class="college-logo"
+  >
+
+  <div class="header-text">
+    <h2 class="college-name">P. E. S. Modern College of Engineering</h2>
+    
+  </div>
+</div>
+
+
+      <nav class="menu">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#" data-section="profile" class="active"><i class="fa fa-user"></i> Profile</a></li>
+          <li><a href="#" data-section="settings"><i class="fa fa-cog"></i> Settings</a></li>
+          <li><a href="#" data-section="notifications"><i class="fa fa-bell"></i> Notifications</a></li>
+        </ul>
+      </nav>
+
+      <nav class="categories">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="#" data-section="all" class="active"><i class="fa fa-th-list"></i> All Categories</a></li>
+          <li><a href="#" data-section="academic"><i class="fa fa-book"></i> Academic</a></li>
+          <li><a href="#" data-section="events"><i class="fa fa-calendar"></i> Events</a></li>
+          <li><a href="#" data-section="sports"><i class="fa fa-football"></i> Sports</a></li>
+          <li><a href="#" data-section="general"><i class="fa fa-comments"></i> General</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="topbar">
+        <button class="toggle-btn" id="toggle-btn"><i class="fa fa-bars"></i></button>
+        <input type="text" placeholder="Search notices...">
+        <div class="user-info">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" class="avatar">
+          <span><%= (currentUser && currentUser.username) ? currentUser.username : 'John Smith' %></span>
+          <a href="/logout"><button class="logout"><i class="fa fa-sign-out-alt"></i> Logout</button></a>
+        </div>
+      </header>
+
+      <!-- Profile Section -->
+      <section id="profile" class="section active">
+        <div class="greeting">
+          <h2>Good Afternoon, <%= (currentUser && currentUser.username) ? currentUser.username : 'John' %>! 👋</h2>
+          <p><%= new Date().toLocaleDateString() %></p>
+          <div class="cards">
+            <div class="card">1<br><span>Academic</span></div>
+            <div class="card">1<br><span>Events</span></div>
+            <div class="card">1<br><span>Sports</span></div>
+            <div class="card">1<br><span>General</span></div>
+            <div class="card highlight">4<br><span>Active Notices</span></div>
+          </div>
+        </div>
+
+        <section class="notices">
+          <h3><i class="fa fa-bullhorn"></i> All Notices</h3>
+          <div class="notice-grid">
+            <% if (notices.length === 0) { %>
+              <p>No notices available right now.</p>
+            <% } else { %>
+              <% notices.forEach(n => { %>
+                <div class="notice">
+                  <span class="tag <%= n.category.toLowerCase() %>"><%= n.category %></span>
+                  <span class="date"><i cla004ss="fa fa-calendar"></i> <%= n.createdAt.toDateString() %></span>
+                  <h4><%= n.title %></h4>
+                  <p><%= n.description %></p>
+                  <p class="expires"><i class="fa fa-clock"></i> Expires: <%= n.expiry.toDateString() %></p>
+                  <button class="read-btn"><i class="fa fa-eye"></i> Read More</button>
+                </div>
+              <% }) %>
+            <% } %>
+          </div>
+        </section>
+      </section>
+
+      <!-- Settings -->
+      <section id="settings" class="section">
+        <h2><i class="fa fa-cog"></i> Settings</h2>
+        <div class="settings-form">
+          <label>Full Name</label>
+          <input type="text" value="John Smith">
+          <label>Email</label>
+          <input type="email" value="johnsmith@email.com">
+          <label>Password</label>
+          <input type="password" placeholder="********">
+          <button class="read-btn"><i class="fa fa-save"></i> Save Changes</button>
+        </div>
+      </section>
+
+      <!-- Notifications -->
+      <section id="notifications" class="section">
+        <h2><i class="fa fa-bell"></i> Notifications</h2>
+        <ul class="notification-list">
+          <li><i class="fa fa-info-circle"></i> Your profile was updated successfully.</li>
+          <li><i class="fa fa-calendar-check"></i> New Event: Coding Hackathon on Oct 5th.</li>
+          <li><i class="fa fa-book"></i> Academic submission deadline extended to Oct 10th.</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
